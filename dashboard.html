@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Smart Safety Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="layout">
+
+    <!-- ================= LEFT PANEL ================= -->
+    <div class="sidebar">
+
+        <h2>👤 Profile</h2>
+        <p>Status: 🟢 Safe</p>
+
+        <hr>
+
+        <h3>👨‍👩‍👧 Family Contacts</h3>
+
+        <form action="/add_contact" method="POST">
+            <input type="text" name="email" placeholder="Add Contact Email" required>
+            <button type="submit">➕ Add</button>
+        </form>
+
+        <div style="margin-top:15px;">
+            {% if contacts %}
+                {% for c in contacts %}
+                    <p>📞 {{ c }}</p>
+                {% endfor %}
+            {% else %}
+                <p>No contacts added</p>
+            {% endif %}
+        </div>
+
+        <a href="/logout">
+            <button style="margin-top:20px;background:red;">Logout</button>
+        </a>
+
+    </div>
+
+    <!-- ================= CENTER SOS PANEL ================= -->
+    <div class="main">
+
+        <h1>🚨 EMERGENCY CONTROL CENTER</h1>
+
+        <!-- SOS BUTTON -->
+        <button class="sos" onclick="sendSOS()">🚨 SOS ALERT</button>
+
+        <div class="info" id="status">Ready</div>
+
+        <!-- CAMERA ELEMENTS -->
+        <video id="video" autoplay style="display:none;"></video>
+        <canvas id="canvas" style="display:none;"></canvas>
+
+        <!-- Optional camera button -->
+        <button class="camera">📷 Camera Active</button>
+
+    </div>
+
+    <!-- ================= RIGHT PANEL ================= -->
+    <div class="right">
+
+        <div class="card">
+            <h3>🧠 Safety Score</h3>
+            <h2>78 / 100</h2>
+        </div>
+
+        <div class="card">
+            <h3>📍 Safe Zone Prediction</h3>
+            <p>High safety near your location</p>
+        </div>
+
+        <div class="card">
+            <h3>⚠ Recommendations</h3>
+            <p>Avoid dark isolated streets</p>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================= FINAL SOS SCRIPT (CLEAN + WORKING) ================= -->
+<script>
+
+let video = document.getElementById("video");
+
+// start camera automatically
+navigator.mediaDevices.getUserMedia({ video: true })
+.then(stream => {
+    video.srcObject = stream;
+})
+.catch(err => {
+    console.log("Camera error:", err);
+});
+
+function sendSOS(){
+
+    document.getElementById("status").innerHTML = "📡 Getting location...";
+
+    navigator.geolocation.getCurrentPosition(function(position){
+
+        let lat = position.coords.latitude;
+        let lon = position.coords.longitude;
+
+        // capture image
+        let canvas = document.getElementById("canvas");
+        let ctx = canvas.getContext("2d");
+
+        canvas.width = 300;
+        canvas.height = 200;
+
+        if(video){
+            ctx.drawImage(video, 0, 0, 300, 200);
+        }
+
+        let image = canvas.toDataURL("image/png");
+
+        document.getElementById("status").innerHTML = "🚨 Sending SOS...";
+
+        fetch("/send_sos", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                lat: lat,
+                lon: lon,
+                image: image
+            })
+        })
+        .then(res => res.text())
+        .then(data => {
+            document.getElementById("status").innerHTML = data;
+        })
+        .catch(() => {
+            document.getElementById("status").innerHTML = "❌ Failed to send SOS";
+        });
+
+    }, function(){
+        document.getElementById("status").innerHTML = "❌ Location denied";
+    });
+}
+
+</script>
+
+</body>
+</html>
