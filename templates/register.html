@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Register - Smart Safety System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="login-container">
+
+    <h1 class="project-title">SMART SAFETY SYSTEM</h1>
+
+    <div class="login-box">
+
+        <h2>Create Account</h2>
+
+        <form method="POST" action="/register" onsubmit="return validateForm()">
+
+            <div class="input-box">
+                <span>👤</span>
+                <input type="text" name="name" placeholder="Full Name" required>
+            </div>
+
+            <div class="input-box">
+                <span>📧</span>
+                <input type="email" name="email" placeholder="Email Address" required>
+            </div>
+
+            <div class="input-box">
+                <span>🧑</span>
+                <input type="text" name="username" placeholder="Username" required>
+            </div>
+
+            <div class="input-box">
+                <span>🔑</span>
+                <input type="password" id="password" name="password" placeholder="Password" required>
+            </div>
+
+            <div class="input-box">
+                <span>🔒</span>
+                <input type="password" id="confirm_password" placeholder="Confirm Password" required>
+            </div>
+
+            <button class="login-btn">Register</button>
+
+        </form>
+
+        <div class="links">
+            <a href="/">Already have an account?</a>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- SIMPLE VALIDATION -->
+<script>
+function validateForm() {
+    let p1 = document.getElementById("password").value;
+    let p2 = document.getElementById("confirm_password").value;
+
+    if (p1 !== p2) {
+        alert("Passwords do not match!");
+        return false;
+    }
+    return true;
+}
+</script>
+
+</body>
+</html>

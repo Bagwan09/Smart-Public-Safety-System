@@ -1,0 +1,288 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+/* =========================
+   GLOBAL
+========================= */
+
+body{
+    background:linear-gradient(135deg,#f1f5f9,#dbeafe);
+    color:#1e293b;
+}
+
+/* =========================
+   LOGIN PAGE
+========================= */
+
+.login-wrapper,
+.login-container{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.login-card,
+.login-box{
+    width:380px;
+    background:white;
+    padding:40px;
+    border-radius:16px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.1);
+    text-align:center;
+}
+
+.title,
+.project-title{
+    color:#2563eb;
+    margin-bottom:10px;
+    font-size:24px;
+    font-weight:bold;
+}
+
+.subtitle{
+    color:#64748b;
+    margin-bottom:20px;
+    font-size:14px;
+}
+
+.input-box{
+    display:flex;
+    align-items:center;
+    background:#f8fafc;
+    border:1px solid #cbd5e1;
+    border-radius:10px;
+    padding:12px;
+    margin:12px 0;
+}
+
+.input-box input{
+    width:100%;
+    border:none;
+    outline:none;
+    background:transparent;
+    color:#1e293b;
+}
+
+.btn-login,
+.login-btn{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    background:#2563eb;
+    color:white;
+    font-size:15px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.btn-login:hover,
+.login-btn:hover{
+    background:#1d4ed8;
+}
+
+.links{
+    margin-top:15px;
+}
+
+.links a{
+    text-decoration:none;
+    color:#2563eb;
+    font-size:14px;
+}
+
+/* =========================
+   DASHBOARD LAYOUT
+========================= */
+
+.layout{
+    display:flex;
+    min-height:100vh;
+}
+
+/* =========================
+   LEFT SIDEBAR
+========================= */
+
+.sidebar{
+    width:22%;
+    background:white;
+    padding:25px;
+    border-right:1px solid #e2e8f0;
+}
+
+.sidebar h2{
+    margin-bottom:10px;
+}
+
+.sidebar h3{
+    color:#2563eb;
+    margin-top:20px;
+    margin-bottom:10px;
+}
+
+.sidebar input{
+    width:100%;
+    padding:10px;
+    border:1px solid #cbd5e1;
+    border-radius:8px;
+}
+
+.sidebar button{
+    width:100%;
+    margin-top:10px;
+    padding:10px;
+    background:#2563eb;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.sidebar button:hover{
+    background:#1d4ed8;
+}
+
+.sidebar p{
+    margin-top:8px;
+}
+
+hr{
+    margin:15px 0;
+}
+
+/* =========================
+   CENTER PANEL
+========================= */
+
+.main{
+    width:56%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    background:#f8fafc;
+    text-align:center;
+    padding:30px;
+}
+
+.main h1{
+    margin-bottom:25px;
+    color:#1e293b;
+}
+
+/* =========================
+   SOS BUTTON
+========================= */
+
+.sos{
+    background:#ef4444;
+    color:white;
+    border:none;
+    padding:25px 60px;
+    font-size:24px;
+    border-radius:15px;
+    cursor:pointer;
+    box-shadow:0 10px 25px rgba(239,68,68,0.3);
+    animation:pulse 1.5s infinite;
+}
+
+.sos:hover{
+    background:#dc2626;
+}
+
+@keyframes pulse{
+    0%{
+        transform:scale(1);
+    }
+    50%{
+        transform:scale(1.08);
+    }
+    100%{
+        transform:scale(1);
+    }
+}
+
+/* =========================
+   STATUS
+========================= */
+
+.info{
+    margin-top:20px;
+    font-size:18px;
+    font-weight:bold;
+    color:#0284c7;
+}
+
+/* =========================
+   CAMERA BUTTON
+========================= */
+
+.camera{
+    margin-top:20px;
+    padding:12px 20px;
+    background:#0ea5e9;
+    color:white;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.camera:hover{
+    background:#0284c7;
+}
+
+/* =========================
+   QUICK BUTTONS
+========================= */
+
+.quick{
+    margin-top:20px;
+}
+
+.quick button{
+    margin:5px;
+    padding:10px 15px;
+    border:none;
+    border-radius:8px;
+    background:#2563eb;
+    color:white;
+    cursor:pointer;
+}
+
+/* =========================
+   RIGHT PANEL
+========================= */
+
+.right{
+    width:22%;
+    background:white;
+    padding:25px;
+    border-left:1px solid #e2e8f0;
+}
+
+.card{
+    background:white;
+    padding:18px;
+    margin-bottom:15px;
+    border-radius:12px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.08);
+}
+
+.card h3{
+    color:#2563eb;
+    margin-bottom:8px;
+}
+
+.card h2{
+    color:#1e293b;
+}
+
+.card p{
+    color:#475569;
+}
